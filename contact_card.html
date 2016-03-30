@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Contact Card Page</title>
+	<link rel="stylesheet" type="text/css" href="contact_card.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.js"></script> 
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+		
+			$(document).submit(function(){
+
+				var newFirstName = $("#firstname").val();
+				var newLastName = $("#lastname").val();
+				var newDescription = $("#description").val();
+
+				$("#added_cards").append(
+				"<div class='individual_card'><div class='front'><h2>" + newFirstName + " " + newLastName + "</h2><h4>Click for description!</h4></div><div class='back'>" + newDescription + "</div></div>");
+				return false;
+			});
+
+			$('body').on("click", "div.front", function() {
+				$(this).css("display", "none");
+				$(this).siblings("div.back").css("display", "inline-block");
+			});
+
+			$('body').on("click", "div.back", function() {
+				$(this).css("display", "none");
+				$(this).siblings("div.front").css("display", "inline-block");
+			});
+
+		});
+
+
+
+	</script>	
+</head>
+<body>
+	<div id="container">
+		<form id="add_user">
+			First name:<input type="text" id="firstname"></input><br>
+			Last name:<input type="text" id="lastname"></input><br>
+			Description:<br><br>
+			<textarea placeholder="Enter description" cols="30" rows="10" id="description"></textarea><br>
+			<input type="submit" value="Add User">
+		</form>
+		<div id="added_cards">
+		</div>
+</body>
+</html>
